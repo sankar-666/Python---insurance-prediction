@@ -1,0 +1,42 @@
+{% include 'adminheader.html' %}
+
+<center>
+    <div class="img-div"></div>
+    <h3>View policy Requests</h3>
+
+    <table class="table table-striped tbl-new bg-light shadow" >
+        <tr>
+            <th>Name</th>
+            <th>Place</th>
+            <th>Phone</th>
+            <th>Policy</th>
+            <th>Vehicle No</th>
+            <th>Model No</th>
+            <th>Engine No</th>
+            <th style="color: red;">Predicted Price</th>
+            <th>Date</th>
+
+        </tr>
+        {% for row in data['res'] %}
+        <tr>
+            <td>{{ row['fname'] }}{{ row['lname'] }}</td>
+            <td>{{ row['place'] }}</td>
+            <td>{{ row['phone'] }}</td>
+            <td>{{ row['policy'] }}</td>
+            <td>{{ row['vechilenum'] }}</td>
+            <td>{{ row['modelnum'] }}</td>
+            <td>{{ row['enginenum'] }}</td>
+            <td>{{ row['price'] }}</td>
+            <td>{{ row['date'] }}</td>
+            {% if row['status'] == 'pending' %}
+            <td><a href="?action=approve&did={{ row['damagerequest_id'] }}" class="btn btn-success" onclick="return confirm('Are you Sure?')">Approve</a></td>
+            <td><a href="?action=reject&did={{ row['damagerequest_id'] }}" class="btn btn-danger" onclick="return confirm('Are you Sure?')">Reject</a></td>
+            {% else %}
+            <td>{{ row['status'] }}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+</center>
+
+{% include 'footer.html' %}

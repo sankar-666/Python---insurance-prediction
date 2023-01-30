@@ -1,0 +1,41 @@
+{% include 'adminheader.html' %}
+
+<center>
+    <div class="img-div"></div>
+    <h3>Complaints</h3>
+    <form action="" method="post">
+    <table class="table table-striped tbl-new bg-light shadow" style="max-width: 1200px;">
+        <tr>
+            <th>Name</th>
+            <th>Place</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Complaint</th>
+            <th>Date</th>
+            <th>Reply</th>
+            
+
+        </tr>
+        {% for row in data['res'] %}
+        <tr>
+            <td>{{ row['fname'] }}{{ row['lname'] }}</td>
+            <td>{{ row['place'] }}</td>
+            <td>{{ row['phone'] }}</td>
+            <td>{{ row['email'] }}</td>
+            <td>{{ row['complaint'] }}</td>
+            <td>{{ row['date'] }}</td>
+            {% if row['reply'] == 'pending' %}
+            <td><input class="form-control" style="resize: horizontal;" type="text"  placeholder="Reply here" name="reply{{ loop.index }}" id=""></td>
+            <td><input class="btn btn-success" type="submit" name="btn{{ loop.index }}"></td>
+            <td><input type="hidden" name="cid{{ loop.index }}" value="{{ row['complaint_id'] }}" id=""></td>
+            {% else %}
+            <td>{{ row['reply'] }}</td>
+            {% endif %}
+
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+</center>
+
+{% include 'footer.html' %}

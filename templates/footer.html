@@ -1,0 +1,52 @@
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+      
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+<style>
+    .jconfirm-box.jconfirm-hilight-shake.jconfirm-type-red.jconfirm-type-animated{
+        width: 100% !important;
+    }
+</style>
+
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class="flashes">
+    {% for message in messages %}
+    <script type="text/javascript">
+       
+       $.confirm({
+    title: 'Alert!',
+    content: '{{message}}',
+    type: 'red',
+    typeAnimated: true,
+    buttons: {
+        tryAgain: {
+            text: 'Ok',
+            btnClass: 'btn-red',
+            action: function(){
+            }
+        },
+        close: function () {
+        }
+    }
+});
+            // toastr.options.timeOut = 800;
+            // toastr.info('{{message}}');
+       
+       
+     
+      </script>
+   
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+
+</body>
+</html>

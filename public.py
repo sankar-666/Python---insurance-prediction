@@ -26,20 +26,14 @@ def login():
             if utype == "admin":
                 flash("Login Success")
                 return redirect(url_for("admin.adminhome"))
-            elif utype == "customer":
-                q="select * from customer where login_id='%s'"%(session['loginid'])
+            elif utype == "agent":
+                q="select * from agent where login_id='%s'"%(session['loginid'])
                 val=select(q)
                 if val:
-                    session['cid']=val[0]['customer_id']
+                    session['aid']=val[0]['agent_id']
                     flash("Login Success")
-                    return redirect(url_for("customer.customerhome"))
-            elif utype == "farmer":
-                q="select * from farmer where login_id='%s'"%(session['loginid'])
-                val1=select(q)
-                if val1:
-                    session['fid']=val1[0]['farmer_id']
-                    flash("Login Success")
-                    return redirect(url_for("farmer.farmerhome"))
+                    return redirect(url_for("agent.agenthome"))
+
                
             
             else:
@@ -54,13 +48,13 @@ def login():
 
 
 
-@public.route('/customerreg',methods=['get','post'])
-def customerreg():
+@public.route('/reg',methods=['get','post'])
+def reg():
 
     if 'btn' in request.form:
         fname=request.form['fname']
         lname=request.form['lname']
-        hname=request.form['hname']
+        gender=request.form['gender']
         place=request.form['place']
         pin=request.form['pin']
         phone=request.form['phone']
@@ -73,12 +67,12 @@ def customerreg():
         if res:
             flash("Username Already Exist!")
         else:
-            q="insert into `login` values(NULL,'%s','%s','customer')"%(uname,passw)
+            q="insert into `login` values(NULL,'%s','%s','agent')"%(uname,passw)
             res=insert(q)
 
-            w="insert into customer value(NULL,'%s','%s','%s','%s','%s','%s','%s','%s')"%(res,fname,lname,hname,place,pin,phone,email)
+            w="insert into agent value(NULL,'%s','%s','%s','%s','%s','%s','%s','%s')"%(res,fname,lname,gender,place,pin,email,phone)
             insert(w)
             flash("Registration Successfull")
             return redirect(url_for("public.login"))
 
-    return render_template("customerreg.html")
+    return render_template("reg.html")

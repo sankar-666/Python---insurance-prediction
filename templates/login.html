@@ -1,0 +1,81 @@
+
+
+{% include 'publicheader.html' %}
+
+
+<div class="login-sec">
+    <form style="margin-left: 800px;" method="post">
+        <div class=" d-block">
+          <span>Username<label>*</label></span>
+          <input class="form-control" required name="uname" type="text"> 
+        </div>
+        <div class="pss  d-block">
+          <span>Password<label>*</label></span>
+          <input class="form-control" required name="pasw"  type="password"> 
+        </div>
+        <!-- <a class="forgot" href="#">Forgot Your Password?</a> -->
+        <div>
+    
+          <input type="submit" name="btn" value="Login">
+        </div>
+      </form>
+      <div style="margin-left: 100px;" class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
+        <img src="/static/assets/img/hero-img.png" class="img-fluid animated" alt="">
+      </div>
+</div>
+    
+    <style>
+      .login-sec{
+        height: 80vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    
+      form{
+        
+        padding: 40px 60px;
+        border-radius: 5px;
+        box-shadow: 2px 4px 6px lightgray,-2px -4px 6px lightgray;
+        display: flex;
+        flex-direction: column;
+        min-width: 450px;
+        justify-content: center;
+        align-items: center;
+      }
+    
+      .pss{
+        margin-left: 5px;
+        
+        
+      }
+    
+      .d-block{
+        min-width: 300px !important;
+       
+      }
+    
+      input[type="submit"]{
+        margin-top: 10px;
+        background: #3498db;
+        border: none;
+        padding: 10px 20px;
+        display: block;
+        color: white;
+        font-weight: 600;
+      }
+    </style>
+
+<script src = "http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src = "http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script>
+    $(document).ready(function() {
+       function disablePrev() { window.history.forward() }
+       window.onload = disablePrev();
+       window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+    });
+ </script>
+
+    
+{% include 'footer.html' %}

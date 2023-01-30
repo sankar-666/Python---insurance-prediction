@@ -1,0 +1,123 @@
+{% include 'publicheader.html' %}
+
+<center>
+    <h1 style="margin-top: 100px;" class="hd">Agent registration</h1>
+    <form action="" method="post" class="form" style="width: 50%;">
+        <table class="table form-group">
+            <tr>
+                <th>First name</th>
+                <td><input type="text" class="form-control" required name="fname" id=""></td>
+            </tr>
+            <tr>
+                <th>last name</th>
+                <td><input type="text" class="form-control" required name="lname" id=""></td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>
+                    <select name="gender" class="form-control" required id="">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="others">Others</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Place</th>
+                <td><input type="text" class="form-control" required name="place" id=""></td>
+            </tr>
+            <tr>
+                <th>Pincode</th>
+                <td><input type="text" class="form-control" required name="pin" max="6" id=""></td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td><input type="text" class="form-control" required name="phone" max="10" id=""></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><input type="text" class="form-control" required name="email" id=""></td>
+            </tr>
+            <tr id="eerror">
+              
+                <td align="center" colspan="2"><span style="color: red !important;">Enter Valid Email!</span></td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td><input type="text" class="form-control" required name="uname" id=""></td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td><input type="text" class="form-control" required  name="passw" id=""></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" class="btn btn-primary"  name="btn" id="btn"></td>
+            </tr>
+        </table>
+    </form>
+</center>
+
+
+<style>
+    tr,td,th{
+        border: none !important;
+    }
+</style>
+
+
+<script src="
+https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+<script>
+    $(function() {
+        $("input[name='fname']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+        $("input[name='lname']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+        // $("input[name='dob']").on('input', function(e) {
+        //     $(this).val($(this).val().replace(/[^0-9/]/g, ''));
+
+        // });
+        
+        $("input[name='phone']").on('input', function(e) {
+        	$(this).val($(this).val().replace(/[^0-9]/g, ''));
+            
+        });
+        $("input[name='pin']").on('input', function(e) {
+        	$(this).val($(this).val().replace(/[^0-9]/g, ''));
+            
+        });
+        $("input[name='email']").on('input', function(e) {
+              var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{1,}/.test(this.value);
+                if(!re) {
+                    $('#eerror').show();
+                    $('#btn').prop('disabled', true);
+                } else {
+                    $('#eerror').hide();
+                }
+
+        });
+        $("input[name='address']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z0-9()/. ]/g, ''));
+
+        });
+        $("input[name='place']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+            
+        $("input[name='pwd']").on('input', function(e) {
+        	$(this).val($(this).val().replace(/[^0-9A-Za-z@/. ]/g, ''));
+            
+        });
+    });
+
+
+</script>
+
+
+{% include 'footer.html' %}
