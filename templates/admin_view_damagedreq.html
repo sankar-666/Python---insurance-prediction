@@ -26,7 +26,7 @@
             <td>{{ row['vechilenum'] }}</td>
             <td>{{ row['modelnum'] }}</td>
             <td>{{ row['enginenum'] }}</td>
-            <td>{{ row['price'] }}</td>
+            <td style="color: red;">{{ row['price'] }}</td>
             <td>{{ row['date'] }}</td>
             {% if row['status'] == 'pending' %}
             <td><a href="?action=approve&did={{ row['damagerequest_id'] }}" class="btn btn-success" onclick="return confirm('Are you Sure?')">Approve</a></td>

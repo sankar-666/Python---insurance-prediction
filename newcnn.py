@@ -15,6 +15,7 @@ from keras.preprocessing import image
 from keras.preprocessing.image import ImageDataGenerator
 
 import numpy as np
+from keras import backend as K
 
 #------------------------------
 # sess = tf.Session()
@@ -60,6 +61,7 @@ def read_dataset1(path):
     return (np.asarray(data_list, dtype=np.float32))
 
 def predictcnn(fn):
+    K.clear_session()
     print (fn)
     dataset=read_dataset1(fn)
     (mnist_row, mnist_col, mnist_color) = 48, 48, 1
@@ -71,6 +73,7 @@ def predictcnn(fn):
 
     yhat_classes = mo.predict_classes(dataset, verbose=0)
     print(yhat_classes)
+    K.clear_session()
     return yhat_classes[0]
 
 

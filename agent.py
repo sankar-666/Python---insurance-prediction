@@ -60,6 +60,7 @@ import uuid
 @agent.route('/agent_damage_request',methods=['get','post'])
 def agent_damage_request():
     data={}
+    amount=""
     q="select * from policy inner join policyrequest using (policy_id)"
     data['preq']=select(q)
     if 'btn' in request.form:
@@ -68,8 +69,6 @@ def agent_damage_request():
         path="static/uploads/"+str(uuid.uuid4())+image.filename
         image.save(path)
 
-        q="insert into damagerequest values (null,'%s','%s','%s','NULL',curdate(),'pending')"%(session['aid'],plid,path)
-        id=insert(q)
         
         res=predictcnn(path)
         msg="50"
@@ -80,8 +79,27 @@ def agent_damage_request():
         elif str(res)=="1":
             msg="30"
             amount="28000"
-        data['amount']=True
         print ("sssssssssssssssssssssssssssssssssss",amount)
+        q="insert into damagerequest values (null,'%s','%s','%s','%s',curdate(),'pending')"%(session['aid'],plid,path,amount)
+        id=insert(q)
+        flash("Request Completed!")
+        return redirect(url_for("agent.agenthome"))
+    
+    # if 'action' in request.args:
+    #     action=request.args['action']
+    # else:
+    #     action=None
+    # if action == "confirm":
+    #     q="update damagerequest set price='%s' where damagerequest_id='%s'"%(amount,id)
+    #     update(q)
+    #     flash("Request Completed!")
+    #     return redirect(url_for("agent.agenthome"))
+    
+    # if action == "cancel":
+    #     q="delete from damagerequest  where damagerequest_id='%s'"%(id)
+    #     update(q)
+    #     flash("Request Canceled!")
+    #     return redirect(url_for("agent.agenthome"))
 
 
     return render_template('agent_damage_request.html',data=data,amount=amount)
