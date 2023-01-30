@@ -1,0 +1,40 @@
+{% include 'agentheader.html' %}
+<center>
+    
+    <div class="img-div">
+        <form id="reg2" class="form" action="" method="post">
+            <h3 class="p-3 text-white">Any Complaints</h3>
+            <div style="width: 60%;" class="reg-container"> 
+                <input placeholder="Add your complaints here." class="form-control" type="text" required name="comp" id="">
+            </div>
+            <div class="reg-container mt-4">
+                <input id="reg-btn" class="btn btn-danger" type="submit" name="btn" id="">
+            </div>
+        </form>
+    </div>
+
+    <br>
+    <!-- <br> -->
+    <h4 class="p-3">Reply Section</h4>
+
+    <table class="table table-striped tbl-new" style="width: 60%;margin-bottom: 2rem;padding: 1rem !important;">
+        <tr>
+            <th>Index</th>
+            <th>Complaint</th>
+            <th>Reply</th>
+            <th>Date</th>
+        </tr>
+        {% for row in data['res'] %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ row['complaint'] }}</td>
+            <td>{{ row['reply'] }}</td>
+            <td>{{ row['date'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</center>
+
+
+{% include 'footer.html' %}

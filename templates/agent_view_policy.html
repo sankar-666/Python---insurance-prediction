@@ -1,0 +1,29 @@
+
+{% include 'agentheader.html' %}
+<br><br>
+   
+    <h5>View Policy Details</h5>
+    <table class="table table-striped tbl-new" style="width: 1000px;">
+        <tr>
+            <th>index</th>
+            <th>Policy</th>
+            <th>Amount</th>
+            <th>No of Days</th>
+            <th></th>
+    
+            
+        </tr>
+        {% for row in data['res'] %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ row['policy'] }}</td>
+            <td>{{ row['amount'] }}</td>
+            <td>{{ row['no_ofdays'] }}</td>
+           
+            <td><a class="btn btn-dark" href="agent_request_policy?pid={{ row['policy_id'] }}">Request policy</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+    {% include 'footer.html' %}

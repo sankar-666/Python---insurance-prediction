@@ -1,0 +1,49 @@
+
+
+{% include 'agentheader.html' %}
+
+<center>
+    {% if data['amount'] %}
+
+    <br><br>
+
+    <form action="" method="post">
+        <span>Predicted Amount: <label for="" style="color: red;">{{ amount }}</label></span>
+        <div style="display: flex;justify-content: center;align-items: center;gap: 20px;height: 20vh;">
+            <a class="btn btn-success" href="" onclick="return confirm('Are you Sure!')">Confirm With This Amount</a>
+            <a class="btn btn-danger" href="" onclick="return confirm('Are you Sure!')">Cancel Request</a>
+        </div>
+    </form>
+
+
+    {% else %}
+
+
+    <h1 style="margin-top: 140px;">Submit Details to continue</h1>
+    <form action="" method="post" class="form" enctype="multipart/form-data"> 
+        <table class="table form-group">
+            <tr>
+                <th>Select your Policy</th>
+                <td>
+                    <select name="plid" class="form-control" id="">
+                        <option value="null">-- Select --</option>
+                        {% for row in data['preq'] %}
+                            <option value="{{ row['policyrequest_id'] }}">{{ row['policy'] }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Upload Image</th>
+                <td><input type="file" class="form-control"  required name="image" id="CP"></td>
+            </tr>
+  
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Predict Price" class="btn btn-primary"  name="btn" id="btn"></td>
+            </tr>
+        </table>
+    </form>
+    {% endif %}
+</center>
+
+{% include 'footer.html' %}
